@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-root_dir = "dataset/" # Where do you have saved the data
+root_dir = "dataset" # Where do you have saved the data
 
 class_list = ["Car"]
 
