@@ -22,7 +22,7 @@ def compute_iou(box, boxes):
     numpy array of all iou values between box and the boxes in boxes (dtype float32)
     """
     
-    iou = [box.intersection(i).area / (box.union(i).area) for i in boxes]
+    iou = [box.intersection(i).area / box.union(i).area for i in boxes]
     
     return np.array(iou, dtype=np.float32)
     #raise NotImplementedError # this is you job to write this Function.
