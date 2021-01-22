@@ -21,12 +21,24 @@ def compute_iou(box, boxes):
     Output:
     numpy array of all iou values between box and the boxes in boxes (dtype float32)
     """
-    
-    iou = [box.intersection(i).area / box.union(i).area for i in boxes]
-    
-    return np.array(iou, dtype=np.float32)
-    #raise NotImplementedError # this is you job to write this Function.
-    
+    # initialize an empty iou_list
+    iou_list = []
+    '''
+        Performs intersection over union of the areas of each boxes and append the result 
+        into the iou_list
+    '''
+    for i in boxes:
+        try:
+            intersection = box.intersection(i).area
+            union = box.union(i).area
+            iou_score = intersection / float(union)
+            iou_list.append(iou_score)
+        except:
+            raise RuntimeError('Failed to compute intersection over union')
+
+    iou_np = np.array(iou_list, dtype=np.float32)  ## simple array to np.array conversion
+    return iou_np
+
 def to_cpu(tensor):
     # cast from conda (if you have a gpu) to cpu
     return tensor.detach().cpu()
